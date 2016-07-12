@@ -21,12 +21,16 @@ var Book = function ( props ){
   book.price = props.price;
 
   return book;
-}
+};
 
 
 var DiscountCalculator = function( shoppingCart ){
   var totalPrice = 0;
 
+  shoppingCart.forEach(function(book, idx){
+    totalPrice += book.price;
+
+  });
 
   return totalPrice;
 };
