@@ -30,19 +30,20 @@ var DiscountCalculator = function( shoppingCart ){
   var getDiscountByUniqueBooks = function( amount ){
     var discount = 1;
 
-    if( amount === 2) {
-      discount = 0.95;
+    switch ( amount ) {
+      case 2:
+          discount = 0.95;
+          break;
+      case 3:
+          discount = 0.9;
+          break;
+      case 4:
+          discount = 0.8;
+          break;
+      case 5:
+          discount = 0.75;
+          break;
     }
-    else if( amount === 3) {
-      discount = 0.9;
-    }
-    else if( amount === 4) {
-      discount = 0.8;
-    }
-    else if( amount === 5) {
-      discount = 0.75;
-    }
-
     return discount;
   };
 
