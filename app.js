@@ -54,10 +54,30 @@ var getTotalBySingleCart = function( cart ){
   return subTotal;
 };
 
+var separateCartsByDifferentBooks = function( subtotal, cart ){
+  var temporaryCart = [];
+  var cloneCart = cart.concat();
+
+  cloneCart.forEach(function(book, idx){
+    if( book !== null && temporaryCart.map(function(e){ return e.name; }).indexOf( book.name ) === -1 ){
+      temporaryCart.push( book );
+      cart[idx] = null;
+    }
+  });
+
+  cart.forEach(function(book, idx){
+    if( book === null ) cart.splice(idx, 1);
+  });
+
+  subtotal += getTotalBySingleCart(temporaryCart);
+
+  return ( cart.length > 0 ) ? separateCartsByDifferentBooks(subtotal, cart) : subtotal ;
+};
+
 var DiscountCalculator = function( shoppingCart ){
   var totalPrice = 0;
 
-  totalPrice = getTotalBySingleCart(shoppingCart);
+  totalPrice = separateCartsByDifferentBooks(totalPrice, shoppingCart);
 
   return totalPrice;
 };
