@@ -54,7 +54,7 @@ var getTotalBySingleCart = function( cart ){
   return subTotal;
 };
 
-var separateCartsByDifferentBooks = function( subtotal, cart ){
+var getSumByDifferentCarts = function( subtotal, cart ){
   var temporaryCart = [];
   var cloneCart = cart.concat();
 
@@ -71,13 +71,13 @@ var separateCartsByDifferentBooks = function( subtotal, cart ){
 
   subtotal += getTotalBySingleCart(temporaryCart);
 
-  return ( cart.length > 0 ) ? separateCartsByDifferentBooks(subtotal, cart) : subtotal ;
+  return ( cart.length > 0 ) ? getSumByDifferentCarts(subtotal, cart) : subtotal ;
 };
 
 var DiscountCalculator = function( shoppingCart ){
   var totalPrice = 0;
 
-  totalPrice = separateCartsByDifferentBooks(totalPrice, shoppingCart);
+  totalPrice = getSumByDifferentCarts(totalPrice, shoppingCart);
 
   return totalPrice;
 };
