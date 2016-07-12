@@ -36,6 +36,9 @@ var DiscountCalculator = function( shoppingCart ){
     else if( amount === 3) {
       discount = 0.9;
     }
+    else if( amount === 4) {
+      discount = 0.8;
+    }
 
     return discount;
   };
