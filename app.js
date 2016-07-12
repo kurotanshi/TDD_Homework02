@@ -23,36 +23,41 @@ var Book = function ( props ){
   return book;
 };
 
-
-var DiscountCalculator = function( shoppingCart ){
-  var totalPrice = 0;
+var getTotalBySingleCart = function( cart ){
+  var subTotal = 0;
 
   var getDiscountByUniqueBooks = function( amount ){
     var discount = 1;
-
     switch ( amount ) {
       case 2:
-          discount = 0.95;
-          break;
+        discount = 0.95;
+        break;
       case 3:
-          discount = 0.9;
-          break;
+        discount = 0.9;
+        break;
       case 4:
-          discount = 0.8;
-          break;
+        discount = 0.8;
+        break;
       case 5:
-          discount = 0.75;
-          break;
+        discount = 0.75;
+        break;
     }
     return discount;
   };
 
-  shoppingCart.forEach(function(book, idx){
-    totalPrice += book.price;
+  cart.forEach(function(book, idx){
+    subTotal += book.price;
 
   });
 
-  totalPrice = parseInt( totalPrice * getDiscountByUniqueBooks( shoppingCart.length ), 10);
+  subTotal = parseInt( subTotal * getDiscountByUniqueBooks( cart.length ), 10);
+  return subTotal;
+};
+
+var DiscountCalculator = function( shoppingCart ){
+  var totalPrice = 0;
+
+  totalPrice = getTotalBySingleCart(shoppingCart);
 
   return totalPrice;
 };
