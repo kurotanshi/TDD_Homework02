@@ -27,10 +27,22 @@ var Book = function ( props ){
 var DiscountCalculator = function( shoppingCart ){
   var totalPrice = 0;
 
+  var getDiscountByUniqueBooks = function( amount ){
+    var discount = 1;
+
+    if( amount === 2) {
+      discount = 0.95;
+    }
+
+    return discount;
+  };
+
   shoppingCart.forEach(function(book, idx){
     totalPrice += book.price;
 
   });
+
+  totalPrice = parseInt( totalPrice * getDiscountByUniqueBooks( shoppingCart.length ), 10);
 
   return totalPrice;
 };
