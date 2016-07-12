@@ -112,4 +112,22 @@ suite('PotterShoppingCart', function(){
       // assert
       assert.equal(expected, result);
     });
+
+
+    test('add_three_different_books_and_two_same_books_and_sum_should_be_460', function(){
+
+      // arrange
+      shoppingCart.push( new app.Book({ name: '哈利波特：神秘的魔法石', price: 100 }) );
+      shoppingCart.push( new app.Book({ name: '哈利波特：消失的密室', price: 100 }) );
+      shoppingCart.push( new app.Book({ name: '哈利波特：消失的密室', price: 100 }) );
+      shoppingCart.push( new app.Book({ name: '哈利波特：阿茲卡班的逃犯', price: 100 }) );
+      shoppingCart.push( new app.Book({ name: '哈利波特：阿茲卡班的逃犯', price: 100 }) );
+
+      // act
+      var expected = 460;
+      var result = app.DiscountCalculator( shoppingCart );
+
+      // assert
+      assert.equal(expected, result);
+    });
 });
